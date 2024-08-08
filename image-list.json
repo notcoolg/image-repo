@@ -1,5 +1,13 @@
 [
-  { "src": "image1.png", "href": "https://ads.xxavvgroup.com", "alt": "Image 1 Description" },
-  { "src": "image2.jpg", "href": "https://link2.com", "alt": "Image 2 Description" },
-  { "src": "image3.jpg", "href": "https://link3.com", "alt": "Image 3 Description" }
+  {
+    "src": "image1.png",
+    "href": "https://ads.xxavvgroup.com",
+    "alt": "Lol?"
+  },
+  {
+    "src": "image2.png",
+    "href": "https://example.com",
+    "alt": "Description for Image 2"
+  }
+  // Add more image objects as needed
 ]
