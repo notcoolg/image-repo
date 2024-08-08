@@ -26,7 +26,7 @@
 <body>
   <div id="image-container" class="image-container"></div>
   <script>
-    fetch('images/image-list.json')
+    fetch('image-repo/images/images.json')
       .then(response => response.json())
       .then(data => {
         const container = document.getElementById('image-container');
