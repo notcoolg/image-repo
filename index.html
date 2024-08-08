@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dynamic Image Gallery</title>
   <style>
-    .image-container { /* Added '.' to correctly reference the class */
+    .image-container {
       display: flex;
       overflow-x: scroll;
       width: 1000px;
       height: 250px;
       white-space: nowrap;
-      background-color: #fff;
+      background-color: #fff; /* Optional: Background color for the container */
     }
-    .image-container img { /* Added '.' to correctly reference the class */
+    .image-container img {
       height: 250px;
       margin-right: 10px;
       transition: transform 0.3s ease;
     }
-    .image-container img:hover { /* Added '.' to correctly reference the class */
+    .image-container img:hover {
       transform: scale(0.9); /* Shrinks the image on hover */
     }
   </style>
@@ -26,7 +26,7 @@
 <body>
   <div id="image-container" class="image-container"></div>
 
-  <!-- Reference to external script.js -->
-  <script src="script.js"></script>
+  <!-- Reference to external script.js file -->
+  <script src="../js/script.js"></script>
 </body>
 </html>
