@@ -4,10 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random Image Display</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #fff; /* Optional: Set background color to match your website */
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
   <script defer src="script.js"></script>
 </head>
 <body>
-  <h1>Random Image Display</h1>
-  <img id="image" alt="Random Image" style="max-width: 100%; height: auto;" />
+  <img id="image" alt="Random Image" />
 </body>
 </html>
