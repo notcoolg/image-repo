@@ -1,46 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Image Gallery</title>
-  <style>
-    .image-container {
-      display: flex;
-      overflow-x: scroll;
-      width: 1000px;
-      height: 250px;
-      white-space: nowrap;
-    }
-    .image-container img {
-      height: 250px;
-      margin-right: 10px;
-    }
-  </style>
-</head>
-<body>
-  <div id="image-container" class="image-container"></div>
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    // Fetch the list of images from the server
+    const response = await fetch("images/image-list.json"); // Ensure this file lists your image URLs
+    const images = await response.json();
 
-  <script>
-    // Fetch JSON data and populate image container
-    fetch('images.json')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById('image-container');
-        data.forEach(item => {
-          const anchor = document.createElement('a');
-          anchor.href = item.href;
-          anchor.target = '_blank';
+    // Pick a random image from the list
+    const randomImage = images[Math.floor(Math.random() * images.length)];
 
-          const img = document.createElement('img');
-          img.src = item.src;
-          img.alt = 'Gallery Image';
-
-          anchor.appendChild(img);
-          container.appendChild(anchor);
-        });
-      })
-      .catch(error => console.error('Error loading images:', error));
-  </script>
-</body>
-</html>
+    // Set the image source to the selected random image
+    const imgElement = document.getElementById("image");
+    imgElement.src = `images/${randomImage}`;
+  } catch (error) {
+    console.error("Error loading image:", error);
+  }
+});
