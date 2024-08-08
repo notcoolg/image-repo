@@ -15,9 +15,13 @@
       display: block;
       max-width: 100%;
       height: auto;
+      transition: transform 0.3s ease; /* Smooth transition for scaling */
+    }
+    img:hover {
+      transform: scale(0.8); /* Shrink to 80% of its original size on hover */
     }
   </style>
-  <script defer src="script.js"></script>
+  <script defer src="docs/js/script.js"></script>
 </head>
 <body>
   <img id="image" alt="Random Image" />
