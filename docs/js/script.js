@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     // Fetch the list of images from the server
-    const response = await fetch("images/image-list.json"); // Ensure this file lists your image URLs
+    const response = await fetch("../images/images.json"); // Ensure this file lists your image URLs
     const images = await response.json();
 
     // Pick a random image from the list
