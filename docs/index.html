@@ -11,10 +11,15 @@
       width: 1000px;
       height: 250px;
       white-space: nowrap;
+      background-color: #fff; /* Optional: Background color for the container */
     }
     .image-container img {
       height: 250px;
       margin-right: 10px;
+      transition: transform 0.3s ease;
+    }
+    .image-container img:hover {
+      transform: scale(0.9); /* Shrinks the image on hover */
     }
   </style>
 </head>
@@ -33,7 +38,7 @@
           anchor.target = '_blank';
 
           const img = document.createElement('img');
-          img.src = item.src;
+          img.src = `images/${item.src}`;
           img.alt = 'Gallery Image';
 
           anchor.appendChild(img);
