@@ -11,7 +11,7 @@
       width: 1000px;
       height: 250px;
       white-space: nowrap;
-      background-color: #fff;
+      background-color: #fff; /* Optional: Background color for the container */
     }
     .image-container img {
       height: 250px;
@@ -19,12 +19,40 @@
       transition: transform 0.3s ease;
     }
     .image-container img:hover {
-      transform: scale(0.9);
+      transform: scale(0.9); /* Shrinks the image on hover */
     }
   </style>
 </head>
 <body>
   <div id="image-container" class="image-container"></div>
-  <script src="js/script.js"></script> <!-- Ensure this path is correct -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        // Fetch the list of images from the server
+        const response = await fetch("images.json"); // Path to your JSON file
+        const images = await response.json();
+
+        // Get the container for images
+        const container = document.getElementById("image-container");
+
+        // Populate the container with images
+        images.forEach(item => {
+          const anchor = document.createElement("a");
+          anchor.href = item.href || "#"; // Default to "#" if href is not available
+          anchor.target = "_blank";
+
+          const img = document.createElement("img");
+          img.src = `images/${item.src}`; // Path to your images folder
+          img.alt = item.alt || "Gallery Image";
+
+          anchor.appendChild(img);
+          container.appendChild(anchor);
+        });
+      } catch (error) {
+        console.error("Error loading images:", error);
+      }
+    });
+  </script>
 </body>
 </html>
