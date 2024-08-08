@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dynamic Image Gallery</title>
   <style>
+    body {
+      display: flex;
+      justify-content: center; /* Horizontally center the container */
+      align-items: center; /* Vertically center the container */
+      height: 100vh; /* Full viewport height */
+      margin: 0; /* Remove default margin */
+      background-color: #f0f0f0; /* Optional: Background color for the body */
+    }
     .image-container {
       display: flex;
       overflow-x: scroll;
@@ -12,6 +20,8 @@
       height: 250px;
       white-space: nowrap;
       background-color: #fff; /* Optional: Background color for the container */
+      border: 1px solid #ddd; /* Optional: Add border to the container */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
     }
     .image-container img {
       height: 250px;
