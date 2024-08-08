@@ -3,27 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Random Image Display</title>
+  <title>Dynamic Image Gallery</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: #fff; /* Optional: Set background color to match your website */
+    .image-container {
+      display: flex;
+      overflow-x: scroll;
+      width: 1000px;
+      height: 250px;
+      white-space: nowrap;
     }
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      transition: transform 0.3s ease; /* Smooth transition for scaling */
-    }
-    img:hover {
-      transform: scale(0.8); /* Shrink to 80% of its original size on hover */
+    .image-container img {
+      height: 250px;
+      margin-right: 10px;
     }
   </style>
-  <script defer src="docs/js/script.js"></script>
 </head>
 <body>
-  <img id="image" alt="Random Image" />
+  <div id="image-container" class="image-container"></div>
+
+  <script>
+    // Fetch JSON data and populate image container
+    fetch('images.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('image-container');
+        data.forEach(item => {
+          const anchor = document.createElement('a');
+          anchor.href = item.href;
+          anchor.target = '_blank';
+
+          const img = document.createElement('img');
+          img.src = item.src;
+          img.alt = 'Gallery Image';
+
+          anchor.appendChild(img);
+          container.appendChild(anchor);
+        });
+      })
+      .catch(error => console.error('Error loading images:', error));
+  </script>
 </body>
 </html>
