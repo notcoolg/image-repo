@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dynamic Image Gallery</title>
   <style>
-    image-container {
+    .image-container { /* Added '.' to correctly reference the class */
       display: flex;
       overflow-x: scroll;
       width: 1000px;
@@ -13,37 +13,20 @@
       white-space: nowrap;
       background-color: #fff;
     }
-    image-container img {
+    .image-container img { /* Added '.' to correctly reference the class */
       height: 250px;
       margin-right: 10px;
       transition: transform 0.3s ease;
     }
-    image-container img:hover {
+    .image-container img:hover { /* Added '.' to correctly reference the class */
       transform: scale(0.9); /* Shrinks the image on hover */
     }
   </style>
 </head>
 <body>
   <div id="image-container" class="image-container"></div>
-  <script>
-    fetch('images/images.json')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById('image-container');
-        data.forEach(item => {
-          const anchor = document.createElement('a');
-          anchor.href = item.href;
-          anchor.target = '_blank';
 
-          const img = document.createElement('img');
-          img.src = `images/${item.src}`;
-          img.alt = item.alt || 'Gallery Image';
-
-          anchor.appendChild(img);
-          container.appendChild(anchor);
-        });
-      })
-      .catch(error => console.error('Error loading images:', error));
-  </script>
+  <!-- Reference to external script.js -->
+  <script src="script.js"></script>
 </body>
 </html>
