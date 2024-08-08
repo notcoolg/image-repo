@@ -28,7 +28,7 @@
 
   <script>
     // Fetch JSON data and populate image container
-    fetch('images.json')
+    fetch('images/image-list.json')
       .then(response => response.json())
       .then(data => {
         const container = document.getElementById('image-container');
@@ -39,7 +39,7 @@
 
           const img = document.createElement('img');
           img.src = `images/${item.src}`;
-          img.alt = 'Gallery Image';
+          img.alt = item.alt || 'Gallery Image';
 
           anchor.appendChild(img);
           container.appendChild(anchor);
