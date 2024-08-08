@@ -1,11 +1,5 @@
 [
-  {
-    "src": "https://notcoolg.github.io/image-repo/images/image1.jpg",
-    "href": "https://example.com/link1"
-  },
-  {
-    "src": "https://your-username.github.io/image-repo/image2.jpg",
-    "href": "https://example.com/link2"
-  }
-  // Add more images as needed
+  { "src": "image1.jpg", "href": "https://link1.com", "alt": "Image 1 Description" },
+  { "src": "image2.jpg", "href": "https://link2.com", "alt": "Image 2 Description" },
+  { "src": "image3.jpg", "href": "https://link3.com", "alt": "Image 3 Description" }
 ]
