@@ -24,35 +24,14 @@
   </style>
 </head>
 <body>
-  <div id="image-container" class="image-container"></div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      try {
-        // Fetch the list of images from the server
-        const response = await fetch("image-list.json"); // Path to your JSON file
-        const images = await response.json();
-
-        // Get the container for images
-        const container = document.getElementById("image-container");
-
-        // Populate the container with images
-        images.forEach(item => {
-          const anchor = document.createElement("a");
-          anchor.href = item.href || "#"; // Default to "#" if href is not available
-          anchor.target = "_blank";
-
-          const img = document.createElement("img");
-          img.src = `images/${item.src}`; // Path to your images folder
-          img.alt = item.alt || "Gallery Image";
-
-          anchor.appendChild(img);
-          container.appendChild(anchor);
-        });
-      } catch (error) {
-        console.error("Error loading images:", error);
-      }
-    });
-  </script>
+  <div id="image-container" class="image-container">
+    <a href="https://ads.xxavvgroup.com" target="_blank">
+      <img src="images/image1.png" alt="hi babe">
+    </a>
+    <a href="https://example.com" target="_blank">
+      <img src="images/image2.png" alt="Description for Image 2">
+    </a>
+    <!-- Add more images here -->
+  </div>
 </body>
 </html>
