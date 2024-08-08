@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     // Fetch the list of images from the server
-    const response = await fetch("../images/image-list.json"); // Ensure this path is correct if images.json is in the root folder
+    const response = await fetch("../image-list.json"); // Ensure this path is correct if images.json is in the root folder
     const images = await response.json();
 
     // Get the container for images
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const img = document.createElement("img");
       img.src = `../images/${item.src}`; // Adjust path as needed
-      img.alt = item.alt || "Gallery Image";
+      img.alt = item.alt || "xxavvADS Showcase Ad";
 
       anchor.appendChild(img);
       container.appendChild(anchor);
