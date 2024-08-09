@@ -15,20 +15,18 @@
     }
     .image-container {
       display: flex;
-      overflow-x: hidden; /* Hide scrollbars */
+      overflow: hidden; /* Hide scrollbars */
       width: 1000px;
       height: 250px;
       white-space: nowrap;
       background-color: #fff; /* Optional: Background color for the container */
       border: 1px solid #ddd; /* Optional: Add border to the container */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
-      position: relative; /* Required for absolute positioning of children */
     }
     .image-container img {
       height: 250px;
       margin-right: 10px;
       transition: transform 0.3s ease;
-      flex-shrink: 0; /* Prevent images from shrinking */
     }
     .image-container img:hover {
       transform: scale(0.9); /* Shrinks the image on hover */
@@ -36,35 +34,47 @@
   </style>
 </head>
 <body>
-  <div id="image-container" class="image-container">
-    <a href="https://ads.xxavvgroup.com" target="_blank">
-      <img src="images/image1.png" alt="Check out xxavvADS by clicking on the link!">
-    </a>
-    <a href="https://6ames.xxavvgroup.com" target="_blank">
-      <img src="images/image2.png" alt="Check out xxavv6AMES website by clicking on the ad!">
-    </a>
-    <a href="https://musik.xxavvgroup.com" target="_blank">
-      <img src="images/image3.gif" alt="Check out xxavvMusik's website by clicking anywhere on the ad!">
-    </a>
-  </div>
+  <div id="image-container" class="image-container"></div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const container = document.querySelector(".image-container");
-      let index = 0;
-      const images = container.querySelectorAll("img");
-      const imageWidth = images[0].offsetWidth + 10; // Width of images plus margin
+    const images = [
+      { src: 'images/image1.png', href: 'https://ads.xxavvgroup.com', alt: 'Check out xxavvADS by clicking on the link!' },
+      { src: 'images/image2.png', href: 'https://6ames.xxavvgroup.com', alt: 'Check out xxavv6AMES website by clicking on the ad!' },
+      { src: 'images/image3.gif', href: 'https://musik.xxavvgroup.com', alt: 'Check out xxavvMusik\'s website by clicking anywhere on the ad!' }
+    ];
 
-      function cycleImages() {
-        index = (index + 1) % images.length;
-        container.scrollTo({
-          left: index * imageWidth,
-          behavior: 'smooth'
-        });
-      }
+    function displayImage(index) {
+      const container = document.getElementById('image-container');
+      container.innerHTML = ''; // Clear existing content
 
-      setInterval(cycleImages, 25000); // Change image every 3 seconds
-    });
+      const image = images[index];
+      const anchor = document.createElement('a');
+      anchor.href = image.href;
+      anchor.target = '_blank';
+
+      const img = document.createElement('img');
+      img.src = image.src;
+      img.alt = image.alt;
+
+      anchor.appendChild(img);
+      container.appendChild(anchor);
+    }
+
+    function getRandomIndex() {
+      return Math.floor(Math.random() * images.length);
+    }
+
+    function startSlideshow() {
+      let currentIndex = getRandomIndex();
+      displayImage(currentIndex);
+
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        displayImage(currentIndex);
+      }, 15000); // Change image every 15 seconds
+    }
+
+    document.addEventListener('DOMContentLoaded', startSlideshow);
   </script>
 </body>
 </html>
