@@ -26,8 +26,8 @@
     .image-container {
       display: flex;
       overflow: hidden; /* Hide scrollbars */
-      width: 748px;
-      height: 90px;
+      width: 1000px;
+      height: 250px;
       white-space: nowrap;
       background-color: #fff; /* Optional: Background color for the container */
       border: 1px solid #ddd; /* Optional: Add border to the container */
@@ -81,7 +81,7 @@
       setInterval(() => {
         currentIndex = (currentIndex + 1) % images.length;
         displayImage(currentIndex);
-      }, 15000); // Change image every 15 seconds
+      }, 10000); // Change image every 15 seconds
     }
 
     document.addEventListener('DOMContentLoaded', startSlideshow);
