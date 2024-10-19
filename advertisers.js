@@ -1,14 +1,14 @@
 const advertisers = {
   'xxavvADS': {
-    href: 'https://ads.xxavvgroup.com',
+    href: 'https://mxavniiv.wixstudio.io/xadsindex/advertiser-pages/xxavvads',
     text: 'Visit xxavvADS'
   },
   'xxavv6AMES': {
-    href: 'https://6ames.xxavvgroup.com',
+    href: 'https://mxavniiv.wixstudio.io/xadsindex/advertiser-pages/xxavv6ames',
     text: 'Visit xxavv6AMES'
   },
   'xxavvMusik': {
-    href: 'https://musik.xxavvgroup.com',
+    href: 'https://mxavniiv.wixstudio.io/xadsindex/advertiser-pages/xxavvmusik',
     text: 'Visit xxavvMusik'
   }
 };
