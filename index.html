@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8YXN09KDRP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8YXN09KDRP');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8YXN09KDRP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8YXN09KDRP');
+  </script>
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,40 +16,59 @@
   <style>
     body {
       display: flex;
-      justify-content: center; /* Horizontally center the container */
-      align-items: center; /* Vertically center the container */
-      height: 100vh; /* Full viewport height */
-      margin: 0; /* Remove default margin */
-      background-color: #f0f0f0; /* Optional: Background color for the body */
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
     }
     .image-container {
+      position: relative;
       display: flex;
-      overflow: hidden; /* Hide scrollbars */
+      overflow: hidden;
       width: 1000px;
       height: 250px;
       white-space: nowrap;
-      background-color: #fff; /* Optional: Background color for the container */
-      border: 1px solid #ddd; /* Optional: Add border to the container */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     .image-container img {
       height: 250px;
       margin-right: 10px;
       transition: transform 0.3s ease;
+      pointer-events: none;
+      user-select: none;
     }
     .image-container img:hover {
-      transform: scale(0.9); /* Shrinks the image on hover */
+      transform: scale(0.9);
+    }
+    .tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 3px;
+      text-decoration: none;
+    }
+    .tag:hover {
+      background-color: rgba(0, 0, 0, 0.8);
     }
   </style>
+  <!-- Load the advertiser tags -->
+  <script src="advertisers.js"></script>
 </head>
 <body>
   <div id="image-container" class="image-container"></div>
 
   <script>
     const images = [
-      { src: 'images/image1.png', href: 'https://ads.xxavvgroup.com', alt: 'Check out xxavvADS by clicking on the link!' },
-      { src: 'images/image2.png', href: 'https://6ames.xxavvgroup.com', alt: 'Check out xxavv6AMES website by clicking on the ad!' },
-      { src: 'images/image3.gif', href: 'https://musik.xxavvgroup.com', alt: 'Check out xxavvMusik\'s website by clicking anywhere on the ad!' }
+      { src: 'images/image1.png', href: 'https://ads.xxavvgroup.com', alt: 'Check out xxavvADS by clicking on the link!', advertiser: 'xxavvADS' },
+      { src: 'images/image2.png', href: 'https://6ames.xxavvgroup.com', alt: 'Check out xxavv6AMES website by clicking on the ad!', advertiser: 'xxavv6AMES' },
+      { src: 'images/image3.gif', href: 'https://musik.xxavvgroup.com', alt: 'Check out xxavvMusik\'s website by clicking anywhere on the ad!', advertiser: 'xxavvMusik' }
     ];
 
     function displayImage(index) {
@@ -68,6 +86,18 @@
 
       anchor.appendChild(img);
       container.appendChild(anchor);
+
+      // Create the tag dynamically using the advertisers.js data
+      const advertiserTag = advertisers[image.advertiser];
+      if (advertiserTag) {
+        const tag = document.createElement('a');
+        tag.href = advertiserTag.href;
+        tag.className = 'tag';
+        tag.target = '_blank';
+        tag.innerText = advertiserTag.text;
+
+        container.appendChild(tag);
+      }
     }
 
     function getRandomIndex() {
