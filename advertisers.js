@@ -1,13 +1,13 @@
 const advertisers = {
-  'xAxA': {
+  'xxavvADS': {
     href: 'https://ads.xxavvgroup.com',
     text: 'Visit xxavvADS'
   },
-  'xAx6': {
+  'xxavv6AMES': {
     href: 'https://6ames.xxavvgroup.com',
     text: 'Visit xxavv6AMES'
   },
-  'xAxM': {
+  'xxavvMusik': {
     href: 'https://musik.xxavvgroup.com',
     text: 'Visit xxavvMusik'
   }
