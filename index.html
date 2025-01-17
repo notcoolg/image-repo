@@ -1,157 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8YXN09KDRP"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8YXN09KDRP');
-  </script>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Image Gallery</title>
+  <title>Responsive Ad Display</title>
   <style>
-    body {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .ad-frame {
+      width: 100%;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
-      overflow: hidden; /* Hide scrollbars */
     }
-    .image-container {
+
+    .ad-container {
       position: relative;
-      display: flex;
-      overflow: hidden; /* Hide scrollbars */
-      width: 100%;
-      max-width: 1000px;
-      aspect-ratio: 4 / 1; /* Maintain 1000x250 aspect ratio */
-      background-color: #fff;
-      border: 1px solid #ddd;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .image-container img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-      pointer-events: none;
-      user-select: none;
+      background-color: #fff;
+      overflow: hidden;
     }
-    .image-container img:hover {
-      transform: scale(0.95); /* Slight zoom effect */
+
+    .ad-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .tag {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: transparent;
-      color: white;
-      padding: 5px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      z-index: 10;
+
+    .ad-container img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.2s;
     }
-    .tag:before {
-      content: 'ℹ️'; /* Info icon */
-      font-size: 20px;
-    }
-    .tag:hover .tooltip {
-      visibility: visible;
-      opacity: 1;
-    }
-    .tooltip {
-      visibility: hidden;
-      width: 150px;
-      background-color: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      padding: 5px;
-      position: absolute;
-      z-index: 10;
-      right: 10px;
-      top: 35px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .tooltip::after {
-      content: '';
-      position: absolute;
-      top: -5px;
-      right: 20px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
-    }
-  </style>
-  <!-- Load the advertiser tags -->
-  <script src="advertisers.js"></script>
-</head>
-<body>
-  <div id="image-container" class="image-container"></div>
 
-  <script>
-    const images = [
-      { src: 'images/image1.png', href: 'https://ads.xxavvgroup.com', alt: 'Check out xxavvADS by clicking on the link!', advertiser: 'xxavvADS' },
-      { src: 'images/image2.png', href: 'https://6ames.xxavvgroup.com', alt: 'Check out xxavv6AMES website by clicking on the ad!', advertiser: 'xxavv6AMES' },
-      { src: 'images/image3.gif', href: 'https://musik.xxavvgroup.com', alt: 'Check out xxavvMusik\'s website by clicking anywhere on the ad!', advertiser: 'xxavvMusik' }
-    ];
-
-    function displayImage(index) {
-      const container = document.getElementById('image-container');
-      container.innerHTML = ''; // Clear existing content
-
-      const image = images[index];
-      const anchor = document.createElement('a');
-      anchor.href = image.href;
-      anchor.target = '_blank';
-
-      const img = document.createElement('img');
-      img.src = image.src;
-      img.alt = image.alt;
-
-      anchor.appendChild(img);
-      container.appendChild(anchor);
-
-      // Create the tag dynamically using the advertisers.js data
-      const advertiserTag = advertisers[image.advertiser];
-      if (advertiserTag) {
-        const tag = document.createElement('a');
-        tag.href = advertiserTag.href;
-        tag.className = 'tag';
-        tag.target = '_blank';
-
-        const tooltip = document.createElement('div');
-        tooltip.className = 'tooltip';
-        tooltip.innerText = advertiserTag.text;
-
-        tag.appendChild(tooltip);
-        container.appendChild(tag);
+    /* For landscape orientation */
+    @media (min-aspect-ratio: 16/9) {
+      .ad-container img {
+        width: 100%;
+        height: auto;
       }
     }
 
-    function getRandomIndex() {
-      return Math.floor(Math.random() * images.length);
+    /* For portrait orientation */
+    @media (max-aspect-ratio: 16/9) {
+      .ad-container img {
+        width: auto;
+        height: 100%;
+      }
     }
 
-    function startSlideshow() {
-      let currentIndex = getRandomIndex();
-      displayImage(currentIndex);
-
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % images.length;
-        displayImage(currentIndex);
-      }, 10000); // Change image every 10 seconds
+    .ad-container:hover img {
+      transform: scale(0.98);
     }
 
-    document.addEventListener('DOMContentLoaded', startSlideshow);
+    .info-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    .info-tag:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .info-icon {
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      width: min(24px, 8%);
+      height: min(24px, 8%);
+      min-width: 16px;
+      min-height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(10px, 2vw, 14px);
+    }
+
+    .tooltip {
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: clamp(4px, 1vw, 8px) clamp(6px, 1.5vw, 12px);
+      border-radius: 4px;
+      font-size: clamp(10px, 1.5vw, 12px);
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.2s;
+    }
+
+    /* Adjust tooltip position for small containers */
+    @media (max-width: 300px), (max-height: 200px) {
+      .tooltip {
+        right: -10px;
+        transform: translateX(100%);
+        top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ad-frame">
+    <div id="adContainer" class="ad-container"></div>
+  </div>
+
+  <script>
+    class AdSystem {
+      constructor(config) {
+        this.config = config;
+        this.currentIndex = 0;
+        this.container = document.getElementById('adContainer');
+        this.initialize();
+      }
+
+      initialize() {
+        if (!this.config || !this.config.ads || !this.config.ads.length) {
+          console.error('Invalid ad configuration');
+          return;
+        }
+        this.showAd();
+        if (this.config.ads.length > 1) {
+          this.startRotation();
+        }
+
+        // Add resize observer to handle container size changes
+        const resizeObserver = new ResizeObserver(entries => {
+          for (const entry of entries) {
+            this.handleResize(entry.contentRect);
+          }
+        });
+        resizeObserver.observe(this.container);
+      }
+
+      handleResize(rect) {
+        // Add any specific resize handling logic here
+        const width = rect.width;
+        const height = rect.height;
+        
+        // Update font sizes or layouts based on container size if needed
+        document.documentElement.style.setProperty('--container-width', `${width}px`);
+        document.documentElement.style.setProperty('--container-height', `${height}px`);
+      }
+
+      showAd() {
+        const ad = this.config.ads[this.currentIndex];
+        this.container.innerHTML = `
+          <div class="ad-content">
+            <a href="${ad.href}" target="_blank" rel="noopener">
+              <img 
+                src="${ad.src}" 
+                alt="${ad.alt || 'Advertisement'}"
+                loading="lazy"
+              >
+            </a>
+            ${this.createInfoTag(ad)}
+          </div>
+        `;
+      }
+
+      createInfoTag(ad) {
+        if (!ad.infoText) return '';
+        return `
+          <div class="info-tag">
+            <div class="info-icon">i</div>
+            <div class="tooltip">${ad.infoText}</div>
+          </div>
+        `;
+      }
+
+      startRotation() {
+        setInterval(() => {
+          this.currentIndex = (this.currentIndex + 1) % this.config.ads.length;
+          this.showAd();
+        }, this.config.rotationInterval || 10000);
+      }
+    }
+
+    // Initialize with configuration from parent window or default config
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'AD_CONFIG') {
+        new AdSystem(event.data.config);
+      }
+    });
+
+    // Notify parent window that the ad system is ready
+    window.parent.postMessage({ type: 'AD_SYSTEM_READY' }, '*');
   </script>
 </body>
 </html>
