@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Ad Display</title>
+  <title>xxavvADS Programatic Ad Carousel (PAC)</title>
   <style>
     * {
       margin: 0;
@@ -128,6 +128,9 @@
     <div id="adContainer" class="ad-container"></div>
   </div>
 
+  <!-- Load the ad configuration -->
+  <script src="ad-config.js"></script>
+
   <script>
     class AdSystem {
       constructor(config) {
@@ -157,13 +160,8 @@
       }
 
       handleResize(rect) {
-        // Add any specific resize handling logic here
-        const width = rect.width;
-        const height = rect.height;
-        
-        // Update font sizes or layouts based on container size if needed
-        document.documentElement.style.setProperty('--container-width', `${width}px`);
-        document.documentElement.style.setProperty('--container-height', `${height}px`);
+        document.documentElement.style.setProperty('--container-width', `${rect.width}px`);
+        document.documentElement.style.setProperty('--container-height', `${rect.height}px`);
       }
 
       showAd() {
@@ -200,15 +198,10 @@
       }
     }
 
-    // Initialize with configuration from parent window or default config
-    window.addEventListener('message', (event) => {
-      if (event.data.type === 'AD_CONFIG') {
-        new AdSystem(event.data.config);
-      }
+    // Initialize the ad system with the loaded configuration
+    document.addEventListener('DOMContentLoaded', () => {
+      new AdSystem(adConfig);
     });
-
-    // Notify parent window that the ad system is ready
-    window.parent.postMessage({ type: 'AD_SYSTEM_READY' }, '*');
   </script>
 </body>
 </html>
